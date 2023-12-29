@@ -1,0 +1,94 @@
+#botonera{
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 60%;
+    margin:0px auto;
+    height: 50px;
+    background-color: rgb(240, 218, 218);
+    font-size: 1em;
+    font-weight: 500;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  
+#montoX {
+    position: relative;
+    top: 180px;
+    left: 115px;
+    width: 28%;
+    height: 30px;
+    font-weight: 700;
+    font-size: 1em;
+    background-color: rgb(240, 218, 218);
+  }
+  #n_operaX {
+    position: relative;
+    top: 383px;
+    left: 65px;
+    width: 30%;
+    height: 25px;
+    font-weight: 700;
+    font-size: 0.9em;
+    background-color: rgb(240, 218, 218);
+  }
+
+  #monto {
+    position: relative;
+    top: 3px;
+    left: 5%;
+    width: 28%;
+    font-size: 0.9em;
+    height: 30px;
+    font-weight: 300;
+    background-color: rgb(240, 218, 218);
+    border:1px solid #050505;
+    border-radius: 8px;
+    padding: 6px 20px 6px 20px ;
+  }
+  #n_opera {
+    position: relative;
+    top: 3px;
+    left: 10%;
+    width: 28%;
+    font-size: 0.9em;
+    height: 25px;
+    font-weight: 300;
+    background-color: rgb(240, 218, 218);
+    border:1px solid #050505;
+    border-radius: 8px;
+    padding: 6px 20px 6px 20px ;    
+  }
+
+  #botonCaptura {
+    position: relative;
+    top: -5px;
+    left: 75%;
+    height: 40px;
+    color:black;
+    font-size: 1em;
+    font-weight: 500;
+    padding: 6px 20px 6px 20px;
+    background-color: orange;
+    border-radius: 8px;
+  }
+
+  #imagenCapturada {
+    position: relative;
+    top: 90px;
+    left: 270px;
+    width: 30%;
+    height: 260px;
+    font-size: 1em;
+    font-weight: 500;
+    background-color: transparent;
+  }
+
+#imagenCapturada{
+    position: relative;
+    top:20px;
+    left: 0px;
+    width: 40%;
+    height: 66%;
+}  

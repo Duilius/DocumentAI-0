@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tu Proyecto</title>
+  <!-- Enlazar Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Estilos personalizados -->
+  <style>
+    /* Para ajustes personalizados */
+    /* ... */
+  </style>
+</head>
+
+<body class="flex flex-col items-center justify-center h-screen bg-gray-900 text-white">
+  <div class="w-3/5 h-3/4 bg-black rounded-md flex justify-center items-center">
+    <!-- Columna izquierda con imagen -->
+    <div class="w-2/5">
+      <img src="photo-fondo-lila.jpg" alt="Mi Foto" class="w-full h-auto">
+    </div>
+
+    <!-- Columna derecha con botón de carga y resultado -->
+    <div class="w-3/5 px-6 py-4">
+      <div class="mb-4">
+        <!-- Botón para subir archivo -->
+        <input type="file" accept=".pdf, .png, .jpg, .jpeg" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+      </div>
+      <div class="mb-4">
+        <!-- Botón para procesar archivo -->
+        <button class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded">Procesar</button>
+      </div>
+      <div class="overflow-y-auto h-64">
+        <!-- Contenedor para el resultado del procesamiento -->
+        <p>Resultado aquí...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center py-4 mt-8">
+    <p>Tus datos personales aquí...</p>
+  </footer>
+</body>
+
+</html>

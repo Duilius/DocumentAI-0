@@ -1,0 +1,9 @@
+project_name:RTF-OCR
+project_id:rtf-ocr
+project_processor_name:rtf_ocr_processor
+project_processor_id:b2a1a8ff0fbfc7ab
+project_endpoint:https://us-documentai.googleapis.com/v1/projects/976068331314/locations/us/processors/b2a1a8ff0fbfc7ab:process
+account_service_name:rtf-ocr-account
+account_service_id:rtf-ocr-account
+email_account_service:rtf-ocr-account@rtf-ocr.iam.gserviceaccount.com
+account_service_description:Llevar a texto y vectorizar contenido de RTFs

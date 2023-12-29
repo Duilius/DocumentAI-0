@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<table class="border-1 border-cyan w-full" style="width: 96%; margin: 0 auto;" >
+    <caption>
+        {% if yapes %}
+        Yapeaste: {{ yapes[0].monto }} a las {{ yapes[0].hora_sistema }} <br>
+        Operación N° {{ yapes[0].num_operacion }}
+        {% endif %}
+    </caption>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>N° Operación</th>
+            <th>Monto pagado</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% set total = 0 %}
+        {% for yape in yapes %}
+        {% if loop.first  %}
+            <tr class="text-right text-red-50" style="color: #22c55e; border:1px solid orange; border-radius: 3px; ">
+                <td>{{ yape.id }}</td>
+                <td>{{ yape.num_operacion }}</td>
+                <td>{{ yape.monto }}</td>
+                <td>{{ yape.fecha_sistema }}</td>
+                <td>{{ yape.hora_sistema }}</td>
+            </tr>
+        {% else %}
+        <tr class="text-right">
+            <td>{{ yape.id }}</td>
+            <td>{{ yape.num_operacion }}</td>
+            <td>{{ yape.monto }}</td>
+            <td>{{ yape.fecha_sistema }}</td>
+            <td>{{ yape.hora_sistema }}</td>
+        </tr>
+        {% set total = total*1 + yape.monto*1 %}
+        {% endif %}
+        {% endfor %}
+    <tr>
+    <tbody>
+        <tr>
+            <td colspan="2">Total</td>
+            <td>{{ total }}</td>
+        </tr>
+</table>
+
+</html>

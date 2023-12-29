@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/htmx.org@1.9.9"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+
+  <title>Tu Proyecto</title>
+  <!-- Enlazar Tailwind CSS -->
+  <!--<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">-->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="static/js/scripts_ai.js"></script> 
+  <!-- Estilos personalizados -->
+  <link href="static/css/styles_ai.css" rel="stylesheet">
+  <style>
+/* CSS */
+#drag-drop-area {
+    border: 2px dashed #ccc;
+    transition: .2s;
+}
+
+#drag-drop-area.highlight {
+    border-color: purple;
+}
+
+
+</style>
+</head>
+
+<body class="flex flex-col items-center justify-center h-screen bg-gray-900 text-white">
+
+  <div id="botonera" class="flex flex-row">
+    <input type="number"  name="monto"    id="monto"    placeholder="Monto a pagar"       class="text-green-500" onkeyup="replicar(this)">
+    <input type="number"  name="n_opera"  id="n_opera"  placeholder="N° Operación [8 digitos]" class="text-green-500" onkeyup="replicar(this)">
+    <!-- Botón para capturar la imagen -->
+    <div>
+      <button type="button" id="botonCaptura">Capturar imagen</button>
+    </div>
+  </div>
+
+
+  <div class="w-3/5 h-3/4 bg-black rounded-md flex justify-center items-center">
+
+    <!-- Columna izquierda con imagen -->
+    <div class="w-1/5">
+      <img src="static/image/photo-fondo-lila.jpg" alt="Mi Foto" class="w-full h-auto"></img>
+      <!--<img src="{{url_for('static', path='../image/photo-fondo-lila.jpg')}}" alt="Mi Foto" class="w-full h-auto"></img>-->
+    </div>
+
+
+    <div  id="captura-yape" class="w-1/5" style="background:url('static/image/yape-0.jpg'); background-repeat: no-repeat; border:1px solid greenyellow; border-radius: 4px; width:520px; height: 480px;" class="h-[480px] border-1 border-green">
+        <form id="miFormulario">
+          <!-- Tus campos de formulario van aquí -->
+          
+
+          <input type="number"  name="montoX"   id="montoX"   disabled class="text-green-500">
+          <input type="number"  name="n_operaX"  id="n_operaX"disabled class="text-green-500">
+          <!-- etc. -->
+      
+          
+      </form>
+      
+    </div>
+
+    <!-- Aquí se mostrará la imagen capturada -->
+    <div id="imagenCapturada" class="border-2 border-red-300 w-[250px]">Aquí !</div>
+
+    <!-- Columna derecha con botón de carga y resultado -->
+    <div class="w-3/5 px-6 py-4">
+      <div class="mb-4">
+        <form  id="dropzone" class="p-4" hx-encoding='multipart/form-data' hx-post='/upload_documents'>
+        <div id="drag-drop-area" class="bg-gray-700 text-white font-bold py-2 px-4 rounded">
+          Arrastra y suelta aquí tu archivo
+        <!-- Botón para subir archivo -->
+        <input type="file" id="archivos" name="archivos" accept=".pdf, .png, .jpg, .jpeg" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+        </div>      
+        <!-- Botón para procesar archivo -->
+        <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
+          hx-post="/upload_documents" 
+          hx-trigger="click" 
+          hx-swap="innerHTML"
+          hx-target="#resultados_aqui"
+        >Procesar</button>
+      </form>
+      </div>
+      
+      <div class="overflow-y-auto h-64 border-2 border-orange">
+        
+        <div id="resultados_aqui"></div>
+      </div>
+    
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center py-4 mt-8">
+    <p>Tus datos personales aquí...</p>
+  </footer>
+
+
+<script>
+function handleDrop(e) {
+    let dt = e.dataTransfer;
+    let files = dt.files;
+
+    document.getElementById('archivos').files = files;  // Asocia los archivos con el input de archivo
+
+    handleFiles(files);
+}
+
+function handleFiles(files) {
+    ([...files]).forEach(file => {
+        uploadFile(file);
+        displayFileName(file);  // Muestra el nombre del archivo en el área de arrastre y soltar
+    });
+}
+
+function displayFileName(file) {
+    document.getElementById('drag-drop-area').innerText = 'Archivo cargado: ' + file.name;
+}
+
+</script>
+<script>
+document.getElementById('botonCaptura').addEventListener('click', function() {
+  html2canvas(document.getElementById('captura-yape')).then(function(canvas) {
+      // Crea una nueva imagen y establece su origen en el canvas
+      var img = new Image();
+      img.src = canvas.toDataURL();
+
+      // Agrega la imagen al div
+      document.getElementById('imagenCapturada').appendChild(img);
+  });
+});
+</script>
+
+</body>
+
+</html>
