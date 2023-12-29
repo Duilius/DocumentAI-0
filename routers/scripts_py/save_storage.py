@@ -7,7 +7,19 @@ from .create_table_billetera import Pagos
 import datetime
 from datetime import datetime, timedelta
 
-engine = create_engine('mysql://root:h3c6a6hGAGCA2geBGb-fh4H5FBeC2dbf@roundhouse.proxy.rlwy.net:27692/railway')
+import os
+import claves
+
+## Variables de conexión a Base de Datos en Railway
+db_user=os.getenv("DB_USER")
+db_password=os.getenv("DB_PASSWORD")
+db_host=os.getenv("DB_HOST")
+db_port=os.getenv("DB_PORT")
+db_name=os.getenv("DB_NAME")
+db_type=os.getenv("DB_TYPE")
+
+engine = create_engine(f'{db_type}://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}')
+
 Session = sessionmaker(bind=engine)
 session = Session()
 

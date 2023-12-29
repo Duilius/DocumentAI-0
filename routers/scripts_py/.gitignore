@@ -1,0 +1,13 @@
+# Ignorar archivos de variables de entorno
+.env
+.env.local
+.env.*
+
+# Archivos de claves API o credenciales
+credentials.json
+rtf_ocr_claves.json
+claves.py
+claves.txt
+
+#Archivos de poca importancia
+pruebas.py
