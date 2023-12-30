@@ -10,7 +10,7 @@ os.environ['DB_PASSWORD']="h3c6a6hGAGCA2geBGb-fh4H5FBeC2dbf"
 os.environ['DB_HOST']="roundhouse.proxy.rlwy.net"
 os.environ['DB_PORT']="27692"
 os.environ['DB_NAME']="railway"
-os.environ['DB_TYPE']="mysql"
+os.environ['DB_TYPE']="mysql+pymysql"
 
 #project_name="RTF-OCR"
 #project_processor_name="rtf_ocr_processor"
