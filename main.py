@@ -38,6 +38,10 @@ app = FastAPI()
 templates = Jinja2Templates(directory="templates/html")
 app.mount("/static", StaticFiles(directory="templates"), name="static")
 
+@app.get("/", response_class=HTMLResponse)
+async def root(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
+
 @app.get("/yape", response_class=HTMLResponse)
 async def yape(request: Request):
     return templates.TemplateResponse("yape.html", {"request": request})
