@@ -74,12 +74,12 @@
     border-radius: 8px;
   }
 
-  #imagenCapturada {
+  #capturaYape {
     position: relative;
-    top: 90px;
-    left: 270px;
-    width: 30%;
-    height: 260px;
+    top: -80px;
+    left: 350px;
+    width: 180px;
+    height: 200px;
     font-size: 1em;
     font-weight: 500;
     background-color: transparent;
@@ -87,8 +87,29 @@
 
 #imagenCapturada{
     position: relative;
-    top:20px;
-    left: 0px;
-    width: 40%;
-    height: 66%;
+    left: 20px;
+    width: 340px;
+    height: 480px;
+    border:1px solid yellow;
+    box-shadow: 1px yellowgreen;
 }  
+
+#resultados_aqu{
+  height: 450px;
+}
+
+#contiene_tabla{
+  height: 302px;
+}
+
+#foto_duilio{
+  border-radius: 40px;
+}
+
+#email_duilio{
+  position: relative;
+  left: 98px;
+  top: -30px;
+  font-size: 0.75em;
+  opacity: 0.55;
+}

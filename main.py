@@ -70,8 +70,12 @@ async def upload_documents(request: Request, archivos: List[UploadFile]):
         #Get mime_type
         if file_uri.filename.endswith('.pdf'):
             mime_type = "application/pdf"
-        else:        
+
+        if file_uri.filename.endswith('.jpg') or file_uri.filename.endswith('.jpeg'):
             mime_type = "image/jpeg"
+        else:
+            mime_type = "image/png"
+
 	
         #Get file contents (PDF or Images)
         with open(file_uri.filename, 'rb') as file_bites:
