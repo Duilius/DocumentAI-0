@@ -69,12 +69,14 @@ async def upload_documents(request: Request, archivos: List[UploadFile]):
         #Get mime_type
         if file_uri.filename.endswith('.pdf'):
             mime_type = "application/pdf"
-
-        if file_uri.filename.endswith('.jpg') or file_uri.filename.endswith('.jpeg'):
+        elif file_uri.filename.endswith('.jpg') or file_uri.filename.endswith('.jpeg'):
             mime_type = "image/jpeg"
-        
-        if file_uri.filename.endswith('.png'):
+        elif file_uri.filename.endswith('.png'):
             mime_type = "image/png"
+        else:
+            # Establecer un valor predeterminado en caso de que no se encuentre ninguna extensión compatible
+            mime_type = "application/octet-stream"  # Tipo MIME genérico para datos binarios
+
 
 	
         #Get file contents (PDF or Images)

@@ -29,20 +29,21 @@
 </style>
 </head>
 
-<body class="flex flex-col items-center justify-center h-screen bg-gray-900 text-white">
+<body >
+<div class="flex flex-col items-center justify-center bg-gray-900 text-white gap-2 ">
 
-  <div id="botonera" class="flex flex-row">
-    <input type="number"  name="monto"    id="monto"    placeholder="Monto a pagar"       class="text-green-500" onkeyup="replicar(this)">
-    <input type="number"  name="n_opera"  id="n_opera"  placeholder="N° Operación [8 digitos]" class="text-green-500" onkeyup="replicar(this)">
+  <div id="botonera" class="w-3/5 flex flex-col md:flex-row md:mt-[80px] md:grip-cols-3 bg-orange-500 gap-2 sm:mt-[9px] items-left pt-2">
+    <h2 class="mx-3">Llena los campos</h2>
+    <input type="number"  name="monto"    id="monto"    placeholder="Monto a pagar"       class="text-green-500 mx-3" onkeyup="replicar(this)">
+    <input type="number"  name="n_opera"  id="n_opera"  placeholder="N° Operación [8 digitos]" class="text-green-500 mx-3" onkeyup="replicar(this)">
     <!-- Botón para capturar la imagen -->
-    <div>
-      <button type="button" id="botonCaptura">Capturar imagen</button>
-    </div>
+    <button type="button" id="botonCaptura" class="mx-1 mb-2 mx-3">Capturar imagen</button>
   </div>
 
 
-  <div class="w-3/5 h-3/4 bg-black rounded-md flex justify-center items-center">
+  <div class="flex sm:flex-col md:flex-row md:w-3/5 h-3/4 bg-black rounded-md justify-center items-center mt-[8px] sm:w-full" style="position: relative;">
 
+  <div class="flex flex-row" >
     <!-- Columna izquierda con imagen 
     <div class="w-1/5">-->
       
@@ -50,57 +51,59 @@
     <!--</div>-->
 
 
-    <div  id="captura-yape" class="w-1/5" style="position: relative; left: 15px; background:url('static/image/yape-0.jpg'); background-repeat: no-repeat; border:1px solid greenyellow; border-radius: 4px; width:340px; height: 480px;" class="h-[480px] border-1 border-green">
-        <form id="miFormulario">
-          <!-- Tus campos de formulario van aquí -->
-          
+        <div  id="captura-yape" 
+        style="position: relative; background:url('static/image/yape-0.jpg'); background-repeat: no-repeat;
+        border:1px solid greenyellow; border-radius: 4px; width:340px; height: 480px;" 
+        class="w-1/5 h-[480px] border-1 border-green sm:w-1/2">
+            <form id="miFormulario">
+              <!-- Tus campos de formulario van aquí -->
 
-          <input type="number"  name="montoX"   id="montoX"   disabled class="text-green-500">
-          <input type="number"  name="n_operaX"  id="n_operaX"disabled class="text-green-500">
-          <!-- etc. -->
-      
-          
-      </form>
-      
-    </div>
+              <input type="number"  name="montoX"   id="montoX"   disabled class="text-green-500">
+              <input type="number"  name="n_operaX"  id="n_operaX"disabled class="text-green-500">
+              <!-- etc. -->
+            </form>
+        </div>
 
-    <!-- Aquí se mostrará la imagen capturada -->
-    <div id="imagenCapturada"><span id="guarda_esta_imagen">
-      <p style="text-decoration: underline; padding-left: 10px; font-size: 0.99em; padding-bottom: 20px; padding-top: 20px;">Guarda la imagen que aparecerá aquí !</p>
-      <ol start="1" style="font-size: 0.75em; color: yellowgreen; padding-left:10px">
-        <li>Digita un monto "a pagar"</li>  
-        <li>Digita el N° Operación de pago</li>  
-        <li>Presiona el botón "Capturar imagen"</li>  
-      </ol>
-      <p style="padding-left: 10px; padding-top: 20px;">Luego guarda la imagen y toca el botón
-      "Elegir Archivos", para que la selecciones.</p>
-    </span></div>
+        <!-- Aquí se mostrará la imagen capturada -->
+        <div id="imagenCapturada" class="sm:w-1/2" style="position: relative;">
+          <div id="guarda_esta_imagen">
+            <p style="text-decoration: underline; padding-left: 10px; font-size: 0.99em; padding-bottom: 20px; padding-top: 20px;">Guarda la imagen que aparecerá aquí !</p>
+            <ol start="1" style="font-size: 0.75em; color: yellowgreen; padding-left:10px">
+              <li>Digita un monto "a pagar"</li>  
+              <li>Digita el N° Operación de pago</li>  
+              <li>Presiona el botón "Capturar imagen"</li>  
+            </ol>
+            <p style="padding-left: 10px; padding-top: 20px;">Luego guarda la imagen y toca el botón
+            "Elegir Archivos", para que la selecciones.</p>
+          </div>
+        </div>
+  </div>    
 
     <!-- Columna derecha con botón de carga y resultado -->
-    <div class="w-3/5 px-6 py-4">
-      <div class="mb-4">
-        <form  id="dropzone" class="p-4" hx-encoding='multipart/form-data' hx-post='/upload_documents'>
-        <div id="drag-drop-area" class="bg-gray-700 text-white font-bold py-2 px-4 rounded">
-          Arrastra y suelta aquí tu archivo
-        <!-- Botón para subir archivo -->
-        <input type="file" id="archivos" name="archivos" multiple accept=".pdf, .png, .jpg, .jpeg" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
-        </div>      
-        <!-- Botón para procesar archivo -->
-        <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
-          hx-post="/upload_documents" 
-          hx-trigger="click" 
-          hx-swap="innerHTML"
-          hx-target="#resultados_aqui"
-        >Procesar</button>
-      </form>
-      </div>
+      <div  class="sm:flex sm:flex-row md:w-3/5 px-6 py-4 sm:rounded-lg ">
+        <div class="">
+          <div class="mb-4">
+            <form  id="dropzone" class="p-4" hx-encoding='multipart/form-data' hx-post='/upload_documents'>
+              <div id="drag-drop-area" class="bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                Arrastra y suelta aquí tu archivo
+              <!-- Botón para subir archivo -->
+              <input type="file" id="archivos" name="archivos" multiple accept=".pdf, .png, .jpg, .jpeg" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+              </div>      
+              <!-- Botón para procesar archivo -->
+              <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
+                hx-post="/upload_documents" 
+                hx-trigger="click" 
+                hx-swap="innerHTML"
+                hx-target="#resultados_aqui"
+              >Procesar</button>
+            </form>
+          </div>
       
-      <div id="contiene_tabla" class="overflow-y-auto h-64 border-2 border-red">
-        
-        <div id="resultados_aqui"></div>
-      </div>
-    
-    </div>
+          <div id="contiene_tabla" class="overflow-y-auto h-64 border-2 border-red">
+            <div id="resultados_aqui"></div>
+          </div>
+        </div>
+      </div>  
   </div>
 
   <!-- Footer -->
@@ -178,6 +181,6 @@ document.getElementById('botonCaptura').addEventListener('click', function() {
   });
 });
 </script>
-
+</div>
 </body>
 </html>
