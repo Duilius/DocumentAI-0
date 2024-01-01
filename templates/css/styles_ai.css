@@ -1,3 +1,4 @@
+
 #botonera{
     position: relative;
     top: 0px;
@@ -15,12 +16,12 @@
   
 #montoX {
     position: relative;
-    top: 180px;
-    left: 115px;
+    top: 181px;
+    left: 101px;
     width: 28%;
     height: 30px;
     font-weight: 700;
-    font-size: 1em;
+    font-size: 1.25em;
     background-color: rgb(240, 218, 218);
   }
   #n_operaX {
@@ -78,8 +79,6 @@
     position: relative;
     top: -80px;
     left: 350px;
-    width: 180px;
-    height: 200px;
     font-size: 1em;
     font-weight: 500;
     background-color: transparent;
@@ -88,7 +87,7 @@
 #imagenCapturada{
     position: relative;
     left: 20px;
-    width: 340px;
+    width: 440px;
     height: 480px;
     border:1px solid yellow;
     box-shadow: 1px yellowgreen;

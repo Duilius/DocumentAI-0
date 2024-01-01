@@ -170,7 +170,7 @@ document.getElementById('botonCaptura').addEventListener('click', function() {
   html2canvas(document.getElementById('captura-yape')).then(function(canvas) {
       // Crea una nueva imagen y establece su origen en el canvas
       var img = new Image();
-      img.src = canvas.toDataURL();
+      img.src = canvas.toDataURL('image/jpeg')
 
       // Agrega la imagen al div
       document.getElementById('imagenCapturada').appendChild(img);
@@ -180,5 +180,4 @@ document.getElementById('botonCaptura').addEventListener('click', function() {
 </script>
 
 </body>
-
 </html>

@@ -65,15 +65,15 @@ async def upload_documents(request: Request, archivos: List[UploadFile]):
     carpeta_pdf = getcwd() + "/templates/image"
 
     for file_uri in archivos:
-        print("file_uri===================>",file_uri)
-        print("Nombre del Archivo ===================>",file_uri.filename)
+
         #Get mime_type
         if file_uri.filename.endswith('.pdf'):
             mime_type = "application/pdf"
 
         if file_uri.filename.endswith('.jpg') or file_uri.filename.endswith('.jpeg'):
             mime_type = "image/jpeg"
-        else:
+        
+        if file_uri.filename.endswith('.png'):
             mime_type = "image/png"
 
 	
