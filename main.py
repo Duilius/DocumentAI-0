@@ -84,43 +84,42 @@ async def upload_documents(request: Request, archivos: List[UploadFile]):
                 file_content_bites = file_bites.read()
                 # Procesar el contenido del archivo, como guardar en una base de datos o realizar operaciones adicionales
                 lectura_archivo="OK"
+
+                #Create a "RawDocument" object (encapsulate the file content + mime_type)
+                raw_file_documentai = documentai.RawDocument(
+                    content=file_content_bites,
+                    mime_type=mime_type)
+
+                #Request to process the document (raw_file_documentai)
+                request_doc = documentai.ProcessRequest(
+                    name=name,
+                    raw_document=raw_file_documentai)   
+                
+                #Request the document to be processed and receive the response
+                response = client.process_document(request=request_doc)
+                document = response.document #Get the document object, already processed, from the response
+                
+                #Validate and Filter each document 👀
+                cabezera,json_data = filter_document(document)
+
+                #Insert the document into the database
+                mto_pagado, num_operacion = save_storage(cabezera,json_data)
+
+                print("MONTO PAGADO ================>", mto_pagado)
+                print("OERACION N°  ================>", num_operacion)
+
+                #Return the result of query
+                results, count_result = show_table_yape()
+
+                #Return the result of the insertion
+                #print("Monto pagado: S/. ", mto_pagado)
+                #print("Número de operación: ", num_operacion)	
+
         except FileNotFoundError:
             # Manejar el caso cuando el archivo no se encuentra
             lectura_archivo="No-hallado"
         except IOError as e:
             # Manejar otras excepciones de lectura/escritura
             lectura_archivo=e    
-            
-
-        #Create a "RawDocument" object (encapsulate the file content + mime_type)
-        raw_file_documentai = documentai.RawDocument(
-            content=file_content_bites,
-            mime_type=mime_type)
-
-        #Request to process the document (raw_file_documentai)
-        request_doc = documentai.ProcessRequest(
-            name=name,
-            raw_document=raw_file_documentai)   
-        
-        #Request the document to be processed and receive the response
-        response = client.process_document(request=request_doc)
-        document = response.document #Get the document object, already processed, from the response
-        
-        #Validate and Filter each document 👀
-        cabezera,json_data = filter_document(document)
-
-        #Insert the document into the database
-        mto_pagado, num_operacion = save_storage(cabezera,json_data)
-
-        print("MONTO PAGADO ================>", mto_pagado)
-        print("OERACION N°  ================>", num_operacion)
-
-        #Return the result of query
-        results, count_result = show_table_yape()
-
-        #Return the result of the insertion
-        #print("Monto pagado: S/. ", mto_pagado)
-        #print("Número de operación: ", num_operacion)	
-
 
         return templates.TemplateResponse("partial_yape.html", {"request": request,"yapes": results, "toal_yapes_hoy": count_result, "lectura_archivo":lectura_archivo})
