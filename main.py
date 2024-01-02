@@ -92,11 +92,6 @@ async def upload_documents(request: Request, archivos: List[UploadFile]):
             lectura_archivo=e    
             
 
-	
-        #Get file contents (PDF or Images)
-        with open(file_uri.filename, 'rb') as file_bites:
-            file_content_bites = file_bites.read()    
-
         #Create a "RawDocument" object (encapsulate the file content + mime_type)
         raw_file_documentai = documentai.RawDocument(
             content=file_content_bites,
