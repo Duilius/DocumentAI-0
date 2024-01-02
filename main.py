@@ -77,6 +77,20 @@ async def upload_documents(request: Request, archivos: List[UploadFile]):
             # Establecer un valor predeterminado en caso de que no se encuentre ninguna extensión compatible
             mime_type = "application/octet-stream"  # Tipo MIME genérico para datos binarios
 
+        lectura_archivo=""
+
+        try:
+            with open(file_uri.filename, 'rb') as file_bites:
+                file_content_bites = file_bites.read()
+                # Procesar el contenido del archivo, como guardar en una base de datos o realizar operaciones adicionales
+                lectura_archivo="OK"
+        except FileNotFoundError:
+            # Manejar el caso cuando el archivo no se encuentra
+            lectura_archivo="No-hallado"
+        except IOError as e:
+            # Manejar otras excepciones de lectura/escritura
+            lectura_archivo=e    
+            
 
 	
         #Get file contents (PDF or Images)
@@ -98,10 +112,13 @@ async def upload_documents(request: Request, archivos: List[UploadFile]):
         document = response.document #Get the document object, already processed, from the response
         
         #Validate and Filter each document 👀
-        cabecera,json_data = filter_document(document)
+        cabezera,json_data = filter_document(document)
 
         #Insert the document into the database
-        mto_pagado, num_operacion = save_storage(cabecera,json_data)
+        mto_pagado, num_operacion = save_storage(cabezera,json_data)
+
+        print("MONTO PAGADO ================>", mto_pagado)
+        print("OERACION N°  ================>", num_operacion)
 
         #Return the result of query
         results, count_result = show_table_yape()
@@ -111,4 +128,4 @@ async def upload_documents(request: Request, archivos: List[UploadFile]):
         #print("Número de operación: ", num_operacion)	
 
 
-        return templates.TemplateResponse("partial_yape.html", {"request": request,"yapes": results, "toal_yapes_hoy": count_result})
+        return templates.TemplateResponse("partial_yape.html", {"request": request,"yapes": results, "toal_yapes_hoy": count_result, "lectura_archivo":lectura_archivo})

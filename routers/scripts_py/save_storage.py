@@ -25,15 +25,24 @@ session = Session()
 
 def save_storage(cabezera, json_data):
 
-    lista_esperada = ["yape", "¡Yapeaste!", "S/XXX", "Duilio Cesar Restuccia", "Eslava", ""]
-    lista_recibida = [cabezera[0], cabezera[1], cabezera[2], cabezera[3], cabezera[4], cabezera[5]]
+    print(" cabezera 0 ===============>>>>", cabezera[0])
+    print(" cabezera 1 ===============>>>>", cabezera[1])
+    print(" cabezera 2 ===============>>>>", cabezera[2])
+    print(" cabezera 3 ===============>>>>", cabezera[3])
+    print(" cabezera 4 ===============>>>>", cabezera[4])
     
-
+    print("SOLES SOLES SOLES ===========================>", type(float(cabezera[1].replace("S/",""))))
+    lista_esperada = ["¡Yapeaste!", "S/XXX", "Duilio Cesar Restuccia", "Eslava"]
+    lista_recibida = [cabezera[0], cabezera[1], cabezera[2], cabezera[3]]
+    
     # Validar el primer grupo de datos(cabecera)
     errores_1 = []
 
     # Comparación de listas
-    for idx, (esperado, recibido) in enumerate(zip(lista_esperada, lista_recibida), start=1):
+    for idx, (esperado, recibido) in enumerate(zip(lista_esperada, lista_recibida)):
+        
+        print("RECIBIDO ======> ", recibido, "========== INDICE====", idx)
+        print("ESPERADO ======> ", esperado, "========== INDICE====", idx)
         if idx == 3:
             # Validación del tercer elemento
             if not recibido.startswith("S/") or not recibido[2:].isdigit() or int(recibido[2:]) <= 0:
@@ -136,12 +145,12 @@ def save_storage(cabezera, json_data):
     print("la fehca final o fecha de pago es: ", fecha_final)
     # Almacenar en la base de datos
     datos_insetar=Pagos(
-        operador=cabezera[0],
-        accion=cabezera[1],
-        monto=float(cabezera[2].replace("S/", "")),
-        mi_empresa=cabezera[3]+ " " + cabezera[4],
-        otro_dato=cabezera[5],
-        error_en=", ".join(errores_1 + errores_2) if errores_1 or errores_2 else None,
+        operador="Yape",
+        accion=cabezera[0],
+        monto=float(cabezera[1].replace("S/", "")),
+        mi_empresa=cabezera[2]+ " " + cabezera[3],
+        otro_dato=cabezera[4],
+        error_en=", ".join(errores_1 + errores_2)[:145] if errores_1 or errores_2 else None,
         validado=False if errores_1 or errores_2 else True,
         fecha_pago=fecha_final, #+ timedelta(days=1),
         hora_pago=hora_final,
@@ -154,6 +163,7 @@ def save_storage(cabezera, json_data):
     )
 
     numOperacion = dict_recibido.get("N° de operación", "No existe")
+    print(" ============= N° OPERACION ===================", numOperacion)
     # ... Código para crear y agregar el nuevo registro 'nuevo_registro'
 
     try:

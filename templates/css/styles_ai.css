@@ -1,3 +1,36 @@
+/* Estilos generales para los div */
+.div-para-movil {
+  display: none; /* Ocultar por defecto en dispositivos más grandes */
+}
+
+.div-para-pantallas-grandes {
+  display: block; /* Mostrar por defecto en dispositivos más grandes */
+}
+
+/* Media query para pantallas de hasta 600px de ancho (celulares) */
+@media screen and (max-width: 640px) {
+  
+  .div-para-pantallas-grandes {
+    display: none !important; /* Ocultar en dispositivos más pequeños */
+  }
+  .div-para-movil {
+    display: block; /* Mostrar en dispositivos más pequeños */
+  }
+}
+
+
+/*
+@media screen and (max-width: 640px){
+	#capturaYape{
+    width: 50%;
+    background-color: aqua;  
+		}
+
+  #imagenCapturada{
+    width: 50%;
+  }
+}
+*/
 #montoX {
     position: relative;
     top: 181px;
@@ -10,9 +43,9 @@
   }
 #n_operaX {
     position: relative;
-    top: 383px;
-    left: 65px;
-    width: 30%;
+    top: 380px;
+    left: 62px;
+    width: 25%;
     height: 25px;
     font-weight: 700;
     font-size: 0.9em;
@@ -54,14 +87,11 @@
   }
 
  #capturaYape {
-
     font-size: 1em;
     font-weight: 500;
-    background-color: transparent;
-  }
+   }
 
 #imagenCapturada{
-
     height: 480px;
     border:1px solid yellow;
     box-shadow: 1px yellowgreen;

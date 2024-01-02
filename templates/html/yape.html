@@ -25,14 +25,13 @@
     border-color: purple;
 }
 
-
 </style>
 </head>
 
 <body >
-<div class="flex flex-col items-center justify-center bg-gray-900 text-white gap-2 ">
+<div class="flex flex-col items-center justify-center bg-gray-900 text-white gap-2 border-2 border-white-700" >
 
-  <div id="botonera" class="w-3/5 flex flex-col md:flex-row md:mt-[80px] md:grip-cols-3 bg-orange-500 gap-2 sm:mt-[9px] items-left pt-2">
+  <div id="botonera" class="w-3/5 flex flex-col md:flex-row md:mt-[80px] md:grip-cols-3 bg-white-500 gap-2 sm:mt-[9px] items-left pt-2">
     <h2 class="mx-3">Llena los campos</h2>
     <input type="number"  name="monto"    id="monto"    placeholder="Monto a pagar"       class="text-green-500 mx-3" onkeyup="replicar(this)">
     <input type="number"  name="n_opera"  id="n_opera"  placeholder="N° Operación [8 digitos]" class="text-green-500 mx-3" onkeyup="replicar(this)">
@@ -41,20 +40,17 @@
   </div>
 
 
-  <div class="flex sm:flex-col md:flex-row md:w-3/5 h-3/4 bg-black rounded-md justify-center items-center mt-[8px] sm:w-full" style="position: relative;">
+  <div class="flex flex-col md:flex md:flex-row md:w-3/5 h-3/4 md:px-[80px] md:py-[10px] bg-black rounded-md justify-center items-center mt-[8px] div-para-pantallas-grandes border-1 " >
 
-  <div class="flex flex-row" >
+  <div class="flex flex-row " >
     <!-- Columna izquierda con imagen 
     <div class="w-1/5">-->
-      
       <!--<img src="{{url_for('static', path='../image/photo-fondo-lila.jpg')}}" alt="Mi Foto" class="w-full h-auto"></img>-->
     <!--</div>-->
-
-
         <div  id="captura-yape" 
-        style="position: relative; background:url('static/image/yape-0.jpg'); background-repeat: no-repeat;
-        border:1px solid greenyellow; border-radius: 4px; width:340px; height: 480px;" 
-        class="w-1/5 h-[480px] border-1 border-green sm:w-1/2">
+        style="background:url('static/image/yape-0.jpg'); background-repeat: no-repeat;
+        border:1px solid greenyellow; border-radius: 4px; height: 480px; width: 540px;" 
+        class="h-[480px] border-1 border-green sm:w-1/2 md:w-full ">
             <form id="miFormulario">
               <!-- Tus campos de formulario van aquí -->
 
@@ -65,23 +61,28 @@
         </div>
 
         <!-- Aquí se mostrará la imagen capturada -->
-        <div id="imagenCapturada" class="sm:w-1/2" style="position: relative;">
+        <div id="imagenCapturada" class="sm:w-1/2 md:w-full  ml-[10px]" >
           <div id="guarda_esta_imagen">
-            <p style="text-decoration: underline; padding-left: 10px; font-size: 0.99em; padding-bottom: 20px; padding-top: 20px;">Guarda la imagen que aparecerá aquí !</p>
-            <ol start="1" style="font-size: 0.75em; color: yellowgreen; padding-left:10px">
-              <li>Digita un monto "a pagar"</li>  
-              <li>Digita el N° Operación de pago</li>  
-              <li>Presiona el botón "Capturar imagen"</li>  
-            </ol>
-            <p style="padding-left: 10px; padding-top: 20px;">Luego guarda la imagen y toca el botón
-            "Elegir Archivos", para que la selecciones.</p>
+
+            <div class="border-2 border-gray-700 rounded-lg w-2/3 mx-auto mt-[60px] pt-[40px] pb-[40px] mt-[40px] bg-gray-900">
+                <p style="text-decoration: underline; padding-left: 10px; font-size: 0.99em; padding-bottom: 20px; padding-top: 20px;">Guarda la imagen que aparecerá aquí !</p>
+                  <ol start="1" style="font-size: 0.75em; color: yellowgreen; padding-left:10px">
+                    <li>Digita un monto "a pagar"</li>  
+                    <li>Digita el N° Operación de pago</li>  
+                    <li>Presiona el botón "Capturar imagen"</li>  
+                  </ol>
+                <p style="padding-left: 10px; padding-top: 20px;">Luego guarda la imagen y toca el botón
+                "Elegir Archivos", para que selecciones la imagen.
+                </p>
+            </div>
+
           </div>
         </div>
   </div>    
 
     <!-- Columna derecha con botón de carga y resultado -->
-      <div  class="sm:flex sm:flex-row md:w-3/5 px-6 py-4 sm:rounded-lg ">
-        <div class="">
+    <div  class="flex flex-row md:w-3/5 md:flex md:flex-row py-2 sm:rounded-lg">
+      <div class="border-1 border-white-700 ml-[10px]">
           <div class="mb-4">
             <form  id="dropzone" class="p-4" hx-encoding='multipart/form-data' hx-post='/upload_documents'>
               <div id="drag-drop-area" class="bg-gray-700 text-white font-bold py-2 px-4 rounded">
@@ -98,14 +99,34 @@
               >Procesar</button>
             </form>
           </div>
-      
+    
           <div id="contiene_tabla" class="overflow-y-auto h-64 border-2 border-red">
             <div id="resultados_aqui"></div>
           </div>
-        </div>
-      </div>  
-  </div>
+      </div>
+    </div>  
+</div>
 
+
+<div class="div-para-movil pb-[270px] mx-auto">
+
+  <h1 class="text-2xl text-green-500" style="color: red;">Versión para Movil</h1>
+
+    <div class="border-2 border-gray-700 rounded-lg p-4">
+      <p>
+        La versión para movil está en desarrollo !
+      </p>
+
+      <p class="mt-4">
+        Puedes ver una demostración del Proyecto, prefriblemente en:
+      </p>
+        <ul class="pl-4 mt-4">
+          <li>Tablet</li>
+          <li>Laptop</li>
+          <li>Desktop</li>
+        </ul>
+    </div>
+</div>
   <!-- Footer -->
   
 
@@ -171,9 +192,11 @@ function displayFileName(file) {
 <script>
 document.getElementById('botonCaptura').addEventListener('click', function() {
   html2canvas(document.getElementById('captura-yape')).then(function(canvas) {
-      // Crea una nueva imagen y establece su origen en el canvas
+     
+    // Crea una nueva imagen y establece su origen en el canvas
       var img = new Image();
-      img.src = canvas.toDataURL('image/jpeg')
+      img.height=480;
+      img.src = canvas.toDataURL('image/png')
 
       // Agrega la imagen al div
       document.getElementById('imagenCapturada').appendChild(img);

@@ -3,9 +3,12 @@
 
 <head>
 <script src="https://cdn.tailwindcss.com"></script>
-
+   
 </head>
-<table class="border-1 border-cyan w-full" style="width: 96%; margin: 0 auto;" >
+
+{% if lectura_archivo == 'OK' %}
+
+<table class="border-1 border-cyan w-full" style="width: 98%; margin: 0 auto;" >
     <caption>
         {% if yapes %}
         Yapeaste: {{ yapes[0].monto }} a las {{ yapes[0].hora_sistema }} <br>
@@ -50,5 +53,43 @@
             <td>{{ total }}</td>
         </tr>
 </table>
+
+{% elif lectura_archivo == 'No-hallado' %}
+
+<div class="border-2 border-gray-700 rounded-lg p-4">
+    <h2 class="text-semibold text-red-50">TE EXPLICO:</h2>
+    <p class="p-4">
+        Al estar corriendo sobre un "Plan de Prueba",
+        Railway prioriza (asignando recursos) sus clientes - pago.
+    </p>
+    <p class="p-4">
+        Es decir, <strong>es posible</strong> que el archivo NO se haya guardado por
+        falta de recursos de cómputo asignados a esta cuenta.
+    </p>
+    <p class="p-4">
+        También es probable que lo hayas guardado con un nombre no adecuado
+        para la seguridad de un servidor.
+    </p>
+    <p class="p-4">
+        Intenta <strong>grabar el archivo con un corto y sin espacios</strong>.
+    </p>
+</div> 
+
+
+
+{% else %}
+<div class="border-2 border-gray-700 rounded-lg p-4">
+    <h2 class="text-semibold text-red-50">TE EXPLICO:</h2>
+    <p class="p-4">
+        Al estar corriendo sobre un "Plan de Prueba",
+        Railway prioriza (asignando recursos) sus clientes - pago.
+    </p>
+    <p class="p-4">
+        Es decir, <strong>es posible</strong> que el archivo NO se haya guardado por
+        falta de recursos de cómputo asignados a esta cuenta.
+    </p>
+</div> 
+{% endif %}      
+
 
 </html>
