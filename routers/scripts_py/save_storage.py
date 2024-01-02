@@ -72,26 +72,33 @@ def save_storage(cabezera, json_data):
 
     # Dividir la cadena en fecha y hora
     fecha_hora_split = fecha_hora_completa.split(" - ")
-    fecha_str = fecha_hora_split[0]  # Obtenemos la parte de la fecha
-    hora_str = fecha_hora_split[1]  # Obtenemos la parte de la hora
+    print("FECHA =====================>", fecha_hora_split)
+    
+    if not "-" in fecha_hora_split or not ":" in fecha_hora_split:
+        fecha_final = datetime.now()
+        hora_final =  datetime.now().time()
+    else:
+        #print("HORA  =====================>", hora_str)
+        fecha_str = fecha_hora_split[0]  # Obtenemos la parte de la fecha
+        hora_str = fecha_hora_split[1]  # Obtenemos la parte de la hora
 
-    # Formatear el mes abreviado a número de mes
-    meses = {
-        "ene.": "01", "feb.": "02", "mar.": "03", "abr.": "04", "may.": "05", "jun.": "06",
-        "jul.": "07", "ago.": "08", "sep.": "09", "oct.": "10", "nov.": "11", "dic.": "12"
-    }
-    fecha_split = fecha_str.split()
-    numero_mes = meses.get(fecha_split[1])  # Obtener el número de mes
+        # Formatear el mes abreviado a número de mes
+        meses = {
+            "ene.": "01", "feb.": "02", "mar.": "03", "abr.": "04", "may.": "05", "jun.": "06",
+            "jul.": "07", "ago.": "08", "sep.": "09", "oct.": "10", "nov.": "11", "dic.": "12"
+        }
+        fecha_split = fecha_str.split()
+        numero_mes = meses.get(fecha_split[1])  # Obtener el número de mes
 
-    # Dar formato a la fecha y hora
-    fecha_final = f"{fecha_split[0]} {numero_mes} {fecha_split[2]}"
-    fecha_final = fecha_final.replace(" ", "/")
+        # Dar formato a la fecha y hora
+        fecha_final = f"{fecha_split[0]} {numero_mes} {fecha_split[2]}"
+        fecha_final = fecha_final.replace(" ", "/")
 
-    hora_final = hora_str.replace(" pm", "pm").replace(" ",":").replace("am", " am").replace("pm", " pm")   
+        hora_final = hora_str.replace(" pm", "pm").replace(" ",":").replace("am", " am").replace("pm", " pm")   
 
-    # Convertir a objetos datetime
-    fecha_final = datetime.strptime(fecha_final, "%d/%m/%Y").date()  # Convertir a formato de fecha
-    hora_final = datetime.strptime(hora_final, "%I:%M %p").time()    # Convertir a formato de hora
+        # Convertir a objetos datetime
+        fecha_final = datetime.strptime(fecha_final, "%d/%m/%Y").date()  # Convertir a formato de fecha
+        hora_final = datetime.strptime(hora_final, "%I:%M %p").time()    # Convertir a formato de hora
 
     # Combinar fecha y hora en un solo formato
     fecha_hora_completa = f"{fecha_final} - {hora_final}"

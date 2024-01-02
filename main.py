@@ -122,5 +122,5 @@ async def upload_documents(request: Request, archivos: List[UploadFile]):
             return templates.TemplateResponse("partial_yape.html", {"request": request, "lectura_archivo":lectura_archivo})
         except IOError as e:
             # Manejar otras excepciones de lectura/escritura
-            lectura_archivo=e    
+            lectura_archivo=e
             return templates.TemplateResponse("partial_yape.html", {"request": request, "lectura_archivo":lectura_archivo})
